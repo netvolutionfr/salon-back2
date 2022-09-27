@@ -13,7 +13,7 @@ import { UsersModule } from './users/users.module';
       username: 'salon',
       password: 'salon123',
       database: 'salon',
-      entities: [],
+      entities: ['dist/**/**.entity.js'],
       synchronize: true,
     }),
     UsersModule
