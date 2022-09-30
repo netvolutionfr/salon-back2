@@ -19,4 +19,14 @@ export class UsersService {
       id: _id
     });
   }
+
+  async deleteUser(_id: number): Promise<any> {
+    return await this.usersRepository.delete({
+      id: _id
+    });
+  }
+
+  async createUser(user: User): Promise<User> {
+    return await this.usersRepository.save(user);
+  }
 }
