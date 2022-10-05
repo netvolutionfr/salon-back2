@@ -1,5 +1,7 @@
-import { Controller, Get, Header } from '@nestjs/common';
+import { Controller, Get, Header, Post, UseGuards, Request, Body } from "@nestjs/common";
 import { AppService } from './app.service';
+import { LocalAuthGuard } from './auth/local-auth.guard';
+import { User } from './users/user.entity';
 
 @Controller()
 export class AppController {
@@ -20,8 +22,14 @@ export class AppController {
   getTest(): string {
     const objet = {
       nom: 'Humez',
-      prenom: 'Stanis'
-    }
+      prenom: 'Stanis',
+    };
     return JSON.stringify(objet);
+  }
+
+  @UseGuards(LocalAuthGuard)
+  @Post('auth/login')
+  async login(@Request() req) {
+    return req.user;
   }
 }
